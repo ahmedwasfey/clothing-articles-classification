@@ -74,6 +74,7 @@ The overall receptive field of the model is the receptive field of the last conv
 * this can be increased by increasing the number of convolution and pooling layers
 
 ### FLOPS :
+- FLOPs and MACs are the same here for every layer as we use only relu activations and no
 - FLOPS for the first convolutional layer:
 
 kernel size = (3, 3)
@@ -102,31 +103,4 @@ Number of input neurons = (64 * 64 * 128)
 Number of output neurons = num_classes
 FLOPS = 2 * (64 * 64 * 128) * 46 = 48,234,496
  
-* this can be decreased by increasing the number of pooling layers and/or resizing the input images to smaller images
-### MACs 
-- MACs for the first convolutional layer:
-
-kernel size = (3, 3)
-input channels = 3 (RGB image)
-output channels = 32
-input image size = (256, 256)
-MACs = (3 * 3) * 3 * 32 * (256 * 256) = 9 * 3 * 32 * (256 * 256) = 10,738,624
-- MACs for the second convolutional layer:
-
-kernel size = (3, 3)
-input channels = 32 (output channels from the first convolutional layer)
-output channels = 64
-input image size = (128, 128) (after max pooling with pool size = (2, 2))
-MACs = (3 * 3) * 32 * 64 * (128 * 128) = 9 * 32 * 64 * (128 * 128) = 283,252,736
-- MACs for the third convolutional layer:
-
-kernel size = (3, 3)
-input channels = 64 (output channels from the second convolutional layer)
-output channels = 128
-input image size = (64, 64) (after max pooling with pool size = (2, 2))
-MACs = (3 * 3) * 64 * 128 * (64 * 64) = 9 * 64 * 128 * (64 * 64) = 7,309,824
-- MACs for the dense layer:
-
-Number of input neurons = (64 * 64 * 128)
-Number of output neurons = num_classes
-MACs = (64 * 64 * 128) * num_classes
+* this can be decreased by increasing the number of pooling layers and/or resizing the input images to smaller images and/or decreasing the number of layers 
